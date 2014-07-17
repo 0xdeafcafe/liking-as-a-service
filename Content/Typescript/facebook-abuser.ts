@@ -72,8 +72,8 @@ class FacebookAbuser {
 			}
 			callback(ids, null);
 		}).fail(() => {
-				callback(null, arguments[0].responseJSON.error.message);
-			});
+			callback(null, arguments[0].responseJSON.error.message);
+		});
 	}
 
 	public likeContent(contentIds: string[], logElement: HTMLElement, callback: (error: string) => void) {
