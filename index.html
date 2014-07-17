@@ -1,13 +1,54 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8" />
-	<title>Facebook Like Abuser</title>
-	<link rel="stylesheet" href="Content/Stylesheets/app.css" type="text/css" />
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="Content/Typescript/app.js"></script>
-</head>
-<body>
-	<div id="content"></div>
-</body>
+	<head>
+		<meta charset="utf-8" />
+		<title>Facebook Like Abuser</title>
+		<link rel="stylesheet" href="Content/Stylesheets/app.css" type="text/css" />
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="Content/Typescript/app.js"></script>
+	</head>
+	<body>
+		<div id="input-fields">
+			<div class="field">
+				<span class="field-name">Access Token:</span>
+				<input type="text" id="fb-access-token" name="fb-access-token" value="CAACEdEose0cBAKBQeIAc2W7B9wkOnk294k3INVCAT59eFZBgsg9BZBSMR1npjBsOD1v49p0lIiCly1xJNGkohgZBRzrBrmV0nHYV1ElpgCc9clUcuFzKY9nKqW3lcsxZBFRwcspqulrcOC0avgtv4gJxaJR2UKbQgVtxAw07M3JK8UpfuLxtvfzE8lcKEQcTWI717FVYpkhyjoZCjumWuJT5LgyyeIeUZD" />
+				<span>
+					Get an
+					<a href="https://developers.facebook.com/tools/explorer/" target="_blank">
+						access token
+					</a>
+				</span>
+			</div>
+
+			<div class="field">
+				<span class="field-name">Target Id:</span>
+				<input type="text" id="fb-target-id" name="fb-target-id" value="konnaire" />
+			</div>
+			
+			<div class="field">
+				<span class="field-name">Request Limit:</span>
+				<input type="text" id="fb-request-limit" name="fb-request-limit" value="100" />
+			</div>
+
+			<button id="fb-content-gathering" name="fb-content-gathering">Gather info</button>
+		</div>
+		
+		<div id="log">
+			<h4>Id Gathering Log</h4>
+			<textarea id="debug-id-log-area" cols="50" rows="20"></textarea>
+		</div>
+		
+		<div id="abuse-controls">
+			<h4>Abuse Controls</h4>
+			
+			<p class="abuse-summary">
+				Found <strong id="like-count">0</strong> items to like. Are you really sure you want to do this?
+				You'll probally lose a few friends.
+			</p>
+
+			<button id="fb-start-abuse" name="fb-start-abuse">Start Abuse</button>
+			
+			<textarea id="debug-like-abuse-area" cols="50" rows="20"></textarea>
+		</div>
+	</body>
 </html>

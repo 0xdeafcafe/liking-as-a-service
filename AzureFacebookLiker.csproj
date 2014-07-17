@@ -17,7 +17,9 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Content\Stylesheets\app.css" />
+    <Content Include="Content\Stylesheets\app.css">
+      <DependentUpon>app.scss</DependentUpon>
+    </Content>
     <Content Include="index.html" />
     <Content Include="web.config" />
   </ItemGroup>
@@ -27,6 +29,7 @@
     <TypeScriptCompile Include="Content\Typescript\Definitions\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Stylesheets\app.scss" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

@@ -1,0 +1,27 @@
+﻿body {
+	font-family: 'Segoe UI', sans-serif;
+}
+
+#input-fields {
+	margin-bottom: 30px;
+
+	.field {
+		margin-bottom: 10px;
+
+		> input {
+			width: 200px;
+		}
+		> .field-name {
+			display: inline-block;
+			width: 150px;
+		}
+	}
+}
+
+#abuse-controls {
+	display: none;
+
+	> .abuse-summary {
+
+	}
+}

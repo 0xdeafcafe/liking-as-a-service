@@ -4,7 +4,7 @@ class FacebookAbuser {
 	contentIds: string[] = [];
 	accessToken: string = null;
 	targetId: string;
-	dataRequestLimit: number = 200;
+	dataRequestLimit: number;
 
 	constructor() { }
 
@@ -12,9 +12,11 @@ class FacebookAbuser {
 		this.accessToken = accessToken;
 	}
 
-	getContentIds(targetId: string, dataRequestLimit: number, logElement: HTMLElement, callback: (ids: any) => void) {
+	getContentIds(targetId: string, dataRequestLimit: number, logElement: HTMLElement,
+		callback: (ids: string[], error: string) => void) {
+
 		if (this.accessToken == null) {
-			console.log("No AccessToken set - terminating");
+			callback(null, "Missing Access Token");
 			return;
 		}
 
@@ -32,7 +34,8 @@ class FacebookAbuser {
 
 		var ajax = [];
 		for (var type in types) {
-			var url = "https://graph.facebook.com/" + targetId + "/" + types[type] + "/?access_token=" + this.accessToken + "&limit=" + this.dataRequestLimit + "&fields=comments.fields(id),id";
+			var url = "https://graph.facebook.com/" + targetId + "/" + types[type] + "/?access_token=" +
+				this.accessToken + "&limit=" + this.dataRequestLimit + "&fields=comments.fields(id),id";
 			ajax.push($.getJSON(url));
 		}
 
@@ -45,21 +48,70 @@ class FacebookAbuser {
 
 				for (var k = 0; k < response.data.length; k++) {
 					ids.push(response.data[k].id);
+					logElement.innerHTML += "Added: " + response.data[k].id + "\n";
+					logElement.scrollTop = logElement.scrollHeight;
+
 					if (response.data[k].comments == null || response.data[k].comments.data == null) continue;
-					for (var z = 0; z < response.data[k].comments.data.length; z++)
+					for (var z = 0; z < response.data[k].comments.data.length; z++) {
 						ids.push(response.data[k].comments.data[z].id);
+						logElement.innerHTML += "Added: " + response.data[k].comments.data[z].id + "\n";
+						logElement.scrollTop = logElement.scrollHeight;
+					}
 				}
 			}
-
-			callback(ids);
+			callback(ids, null);
+		}).fail(() => {
+			callback(null, arguments[0].responseJSON.error.message);
 		});
+	}
+
+	likeContent(contentIds: string[], logElement: HTMLElement, callback: (error: string) => void) {
+
+		if (this.accessToken == null) {
+			callback("Missing Access Token");
+			return;
+		}
+
+
 	}
 }
 
 window.onload = () => {
-	var facebookAbuser = new FacebookAbuser();
-	facebookAbuser.setAccessToken("CAACEdEose0cBAB4CiUkIzxGItOOPgCdQ0NlXyWUaYzTe89mrLM2zvB04jiaPKDZBysECS3zZAL37LTO4cObT1mWbbCvKlxQkgBfs8k5hZBZB3bTGhN1esHOyVxp1f2nRH5zlcgNQmdyX1IBl6ofltyRDv4xZAFyWh0LB0cagEDLq7NMeLFEyLHnttpNZBI89mNDTZAEX4LVJOfS1XZA3c6ETe1638GpotvoZD");
-	facebookAbuser.getContentIds("xbdm.xex", 10, null, ids => {
-		console.log(ids);
+	var fbAbuser = new FacebookAbuser();
+
+	$('#fb-content-gathering').click(() => {
+		var accessToken = $('#fb-access-token').attr('value');
+		var targetId = $('#fb-target-id').attr('value');
+		var requestLimit = parseInt($('#fb-request-limit').attr('value'));
+
+		// Set Access Token
+		fbAbuser.setAccessToken(accessToken);
+
+		// Get Content Ids
+		fbAbuser.getContentIds(targetId, requestLimit, $('#debug-id-log-area').get(0), (ids, error) => {
+			if (error) {
+				$('#debug-id-log-area').get(0).innerHTML = "";
+				alert("There was an error loading items: " + error);
+				return;
+			}
+
+			// Show the next stage
+			$('#abuse-controls').css('display', 'block');
+			$('#like-count').text(ids.length.toString());
+
+			$('#fb-start-abuse').click(() => {
+				if (!confirm("Are you realllllly sure?")) return;
+
+				fbAbuser.likeContent(ids, $('#debug-like-abuse-area').get(0), error => {
+					if (error == null) {
+						$('#debug-like-abuse-area').get(0).innerHTML = "";
+						alert("Error liking content: " + error);
+						return;
+					}
+
+					// liking was all gucci
+				});
+			});
+		});
 	});
 };

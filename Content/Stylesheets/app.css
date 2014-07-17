@@ -1,7 +1,15 @@
 ﻿body {
-	font-family: 'Segoe UI', sans-serif;
-}
+  font-family: 'Segoe UI', sans-serif; }
 
-span {
-	font-style: italic;
-}
+#input-fields {
+  margin-bottom: 30px; }
+  #input-fields .field {
+    margin-bottom: 10px; }
+    #input-fields .field > input {
+      width: 200px; }
+    #input-fields .field > .field-name {
+      display: inline-block;
+      width: 150px; }
+
+#abuse-controls {
+  display: none; }
