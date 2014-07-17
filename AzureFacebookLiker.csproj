@@ -27,6 +27,8 @@
     <TypeScriptCompile Include="Content\Typescript\app.ts" />
     <TypeScriptCompile Include="Content\Typescript\Definitions\facebook.d.ts" />
     <TypeScriptCompile Include="Content\Typescript\Definitions\jquery.d.ts" />
+    <TypeScriptCompile Include="Content\Typescript\facebook-abuser.ts" />
+    <TypeScriptCompile Include="Content\Typescript\security.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Stylesheets\app.scss" />

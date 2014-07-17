@@ -11,5 +11,5 @@
       display: inline-block;
       width: 150px; }
 
-#abuse-controls {
+#id-log, #abuse-controls, #like-abuse-log {
   display: none; }
