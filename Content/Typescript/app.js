@@ -2,9 +2,9 @@
 window.onload = function () {
     var fbAbuser = new FacebookAbuser();
 
-    $('#fb-access-token').val("CAACEdEose0cBAODyGMWk7pLIzeRr20QtlvpCRHkRbxodLkU2WR72ZBmunk6mHZAdflDWu7uNyQOZByPjbALTbWuyKILCrWzlWMSdJYG9SDYZCimxgvogTh4YTrBbyr7O4SKnXNTZB9DSbTDGIFTm7ZBZCjMmRS5mKZCng0fOuUYY2pQ2amlU9HRVrRlfjLZAbKcb3nAQBAi0C1xh9xDoc0WlZB");
+    $('#fb-access-token').val("");
     $('#fb-target-id').val("konnaire");
-    $('#fb-request-limit').val("10");
+    $('#fb-request-limit').val("100");
 
     $('#fb-content-gathering').click(function () {
         var accessToken = $('#fb-access-token').val();
@@ -36,14 +36,14 @@ window.onload = function () {
                 $('#like-abuse-log').css('display', 'block');
 
                 var gotResponse = false;
-                fbAbuser.likeContent(ids, $('#debug-like-abuse-area').get(0), function (error) {
+                fbAbuser.likeContent(ids, $('#debug-like-abuse-area').get(0), function (errorResponse) {
                     if (gotResponse)
                         return;
 
                     gotResponse = true;
-                    if (error == null) {
+                    if (errorResponse == null) {
                         $('#debug-like-abuse-area').get(0).innerHTML = "";
-                        alert("Error liking content: " + error);
+                        alert("Error liking content: " + errorResponse);
                         return;
                     } else {
                         alert('see man driving a german whip.');
