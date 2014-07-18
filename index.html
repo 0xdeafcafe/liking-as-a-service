@@ -57,14 +57,35 @@
 			<textarea id="debug-like-abuse-area" cols="50" rows="20"></textarea>
 		</div>
 		
+		<hr />
+
+		<div id="about-me">
+			<h4>About</h4>
+			<p>
+				This thing will like content (and comments on content) on a targets facebook account. Just enter your
+				access token from the graph explorer (click the link), the targets id and the number of posts to
+				return of each type (photo, video, feed, etc).
+			</p>
+			
+			<div class="entry">
+				<span class="question">Is my access token safe?</span>
+				<span class="answer">For sure, it never gets stored on any server. It's sent directly from your browser to facebook. Not sure where the grief goes though.</span>
+			</div>
+
+			<div class="entry">
+				<span class="question">Wtf man?</span>
+				<span class="answer">Yeah, I know.</span>
+			</div>
+		</div>
+		
 		<script>
 			!function (g, s, q, r, d) {
 				r = g[r] = g[r] || function () {
 					(r.q = r.q || []).push(
-					arguments)
+						arguments)
 				}; d = s.createElement(q); q = s.getElementsByTagName(q)[0];
 				d.src = 'https://d1l6p2sc9645hc.cloudfront.net/tracker.js'; q.parentNode.
-				insertBefore(d, q)
+					insertBefore(d, q)
 			}(window, document, 'script', '_gs');
 
 			_gs('GSN-586429-T');

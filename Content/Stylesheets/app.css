@@ -1,5 +1,6 @@
 ﻿body {
-  font-family: 'Segoe UI', sans-serif; }
+  font-family: 'Segoe UI', sans-serif;
+  padding: 10px 0 0 10px; }
 
 #input-fields {
   margin-bottom: 30px; }
@@ -13,3 +14,15 @@
 
 #id-log, #abuse-controls, #like-abuse-log {
   display: none; }
+
+#about-me > .entry {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 10px 0 10px 10px;
+  border-left: 4px solid #c2c2c2;
+  background-color: #f8f8f8; }
+  #about-me > .entry > .question, #about-me > .entry > .answer {
+    display: block; }
+  #about-me > .entry > .question {
+    color: #444444;
+    font-weight: bold; }

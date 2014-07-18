@@ -1,5 +1,7 @@
 ﻿body {
 	font-family: 'Segoe UI', sans-serif;
+
+	padding: 10px 0 0 10px;
 }
 
 #input-fields {
@@ -22,4 +24,26 @@
 #abuse-controls,
 #like-abuse-log {
 	display: none;
+}
+
+#about-me {
+
+	> .entry {
+		margin-top: 10px;
+		margin-left: 10px;
+		padding: 10px 0 10px 10px;
+		border-left: 4px solid #c2c2c2;
+		background-color: #f8f8f8;
+
+		> .question,
+		> .answer {
+			display: block;
+		}
+
+		> .question {
+			color: #444444;
+			font-weight: bold;
+		}
+	}
+	
 }
